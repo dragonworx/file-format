@@ -1,0 +1,51 @@
+{
+  "name": "file-format",
+  "version": "0.1.0",
+  "description": "Fresh from the oven",
+  "keywords": [
+    "typescript"
+  ],
+  "homepage": "https://github.com/...",
+  "bugs": {
+    "url": "https://github.com/..."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/... .git"
+  },
+  "license": "MIT",
+  "author": "Me <email> (https://github.com/me)",
+  "main": "dist/index.cjs.js",
+  "jsdelivr": "dist/bundle.min.js",
+  "unpkg": "dist/bundle.min.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc && tsc-alias",
+    "postbuild": "npm run rollup && npm run prepare-packages && npm run prepare-dist",
+    "clean": "rimraf -r dist",
+    "prepare": "npm run build",
+    "prepare-dist": "node tools/prepare-dist.js",
+    "prepare-packages": "node tools/prepare-package.js",
+    "rollup": "rollup -c tools/rollup.config.js",
+    "test": "jest",
+    "pack": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.1.3",
+    "tsc-alias": "^1.3.9",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

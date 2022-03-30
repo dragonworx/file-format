@@ -1,0 +1,8 @@
+.github
+example
+node_modules
+test
+tools
+.gitignore
+jest.config.js
+tsconfig.json
