@@ -1,7 +1,7 @@
 {
   "name": "file-format",
   "version": "0.1.0",
-  "description": "Fresh from the oven",
+  "description": "Serialise objects to and from blobs to create custom binary file formats with ease",
   "keywords": [
     "typescript"
   ],
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/... .git"
   },
   "license": "MIT",
-  "author": "Me <email> (https://github.com/me)",
+  "author": "Ali Chamas <dragonworxau@yahoo.com.au> (https://github.com/dragonworx)",
   "main": "dist/index.cjs.js",
   "jsdelivr": "dist/bundle.min.js",
   "unpkg": "dist/bundle.min.js",
