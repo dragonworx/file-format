@@ -34,7 +34,7 @@ const obj = {
   f: 1000,
 };
 
-describe("DataWriter -> DataReader", () => {
+describe("DataWriter / DataReader", () => {
   it("should write and read all supported types", () => {
     return new DataWriter().serialise(obj).then((writer) => {
       const blob = writer.toBlob();
