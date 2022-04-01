@@ -1,0 +1,52 @@
+{
+  "name": "file-format",
+  "version": "0.1.1",
+  "description": "Serialise your objects to and from Blobs, Base64, or ArrayBuffers to create custom binary file formats with ease",
+  "keywords": [
+    "typescript"
+  ],
+  "homepage": "https://github.com/dragonworx/file-format",
+  "bugs": {
+    "url": "https://github.com/dragonworx/file-format/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragonworx/file-format.git"
+  },
+  "license": "MIT",
+  "author": "Ali Chamas <dragonworxau@yahoo.com.au> (https://github.com/dragonworx)",
+  "main": "dist/index.cjs.js",
+  "jsdelivr": "dist/bundle.min.js",
+  "unpkg": "dist/bundle.min.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc && tsc-alias",
+    "postbuild": "npm run rollup && npm run prepare-packages && npm run prepare-dist",
+    "clean": "rimraf -r dist",
+    "prepare": "npm run build",
+    "prepare-dist": "node tools/prepare-dist.js",
+    "prepare-packages": "node tools/prepare-package.js",
+    "rollup": "rollup -c tools/rollup.config.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "pack": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.1.3",
+    "tsc-alias": "^1.3.9",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
