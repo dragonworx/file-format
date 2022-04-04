@@ -2,7 +2,7 @@
 
 `file-format` converts objects to and from Blobs, Base64, or ArrayBuffers with the freedom to shape things as a JSON object. This is useful for packing complex types of data into a single file for your applications file format, or bundling resource fetched over a network.
 
-Works in both **Node** or the **Browser**.
+> Designed for **Browser** usage, though Node support should be possible if required (recommended to Fork or submit feature request). `Blob` support is poor/non-existent in older version of Node (< v15).
 
 ## Install
 
