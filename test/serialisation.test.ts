@@ -35,12 +35,21 @@ const obj = {
 };
 
 describe("DataWriter / DataReader", () => {
-  it("should write and read all supported types", () => {
+  it("should write and read all supported types from an object", () => {
     return new DataWriter().serialise(obj).then((writer) => {
       const blob = writer.toBlob();
-      console.log(blob);
       return new DataReader().deserialise(blob).then((obj2) => {
         expect(obj2).toEqual(obj);
+      });
+    });
+  });
+
+  it("should write and read all supported types from an array", () => {
+    const input = [obj];
+    return new DataWriter().serialise(input).then((writer) => {
+      const blob = writer.toBlob();
+      return new DataReader().deserialise(blob).then((obj2) => {
+        expect(obj2).toEqual(input);
       });
     });
   });

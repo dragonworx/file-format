@@ -2,7 +2,9 @@
 
 `file-format` converts objects to and from Blobs, Base64, or ArrayBuffers with the freedom to shape things as a JSON object. This is useful for packing complex types of data into a single file for your applications file format, or bundling resource fetched over a network.
 
-> Designed for **Browser** usage, though Node support should be possible if required (recommended to Fork or submit feature request). `Blob` support is poor/non-existent in older version of Node (< v15).
+> This library is primarily designed for **Browser** / **Electron** usage, though Node usage is possible for Node versions higher than 15.7.
+
+> `Blob` support is poor/non-existent in older version of Node (< v15.7) - see the [Blob Node compatibility](https://developer.mozilla.org/en-US/docs/Web/API/Blob#browser_compatibility) info. Use a polyfill like [cross-blob](https://www.npmjs.com/package/cross-blob) if required.
 
 ## Install
 
@@ -12,42 +14,7 @@ Install as dependency through npm.
 
 ## Defining your format
 
-To define a format just create either an object or an array with keys/values/items of the supported types above.
-
-You're free to nest arrays and object literals as required.
-
-For example:
-
-```javascript
-// define an object with any structure based on the supported types...
-
-const myFileFormat = {
-  n: null,
-  a: "x",
-  x: 123,
-  foo: [null, "bar"],
-  y: true,
-  z: false,
-  w: ["a", "b", { c: false, d: [1, 2, [3, null]] }],
-  p: blob,
-  d: {
-    b: {
-      a: true,
-    },
-  },
-  k: arrayBuffer,
-  f: 1000,
-};
-
-// or as an array
-const myFileFormat = [
-  /*...*/
-];
-```
-
-The aim is to create the file format as you require, then write it as a single binary file which you can read back later.
-
-## Supported types:
+To define a format just create either an object or an array with keys/values/items of these supported types:
 
 - `string`
 - `number`
@@ -56,7 +23,38 @@ The aim is to create the file format as you require, then write it as a single b
 - `Blob`
 - `ArrayBuffer`
 
-Also supports `Array` and `Object` of these primitive types.
+Also supports arbitrary Arrays and Object combinations of these types.
+
+You're free to structure things as required, these types should provide all the flexibility to capture a self-contained file. For example, you can store images as blobs and any metadata required as a single file.
+
+Here's an example of an arbitrary file format:
+
+```javascript
+// define an object with any sub structures based on the supported types...
+
+const myFileFormat = {
+  aNullProp: null,
+  aStringProp: "x",
+  aNumberProp: 123,
+  anArrayProp: [null, "bar", 123, { x: 1 }],
+  aBoolean: true,
+  theOtherBoolean: false,
+  aComplexArray: ["a", "b", { c: false, d: [1, 2, [3, null]] }],
+  aBlobProp: blob,
+  someObjectProp: {
+    subProp1: {
+      subProp2: true,
+    },
+  },
+  anArrayBufferProp: arrayBuffer,
+  anotherNumber: 1000.55,
+};
+
+// or define it as an array
+const myFileFormat = [
+  // ...same supported types as above, with any nesting or sub structures required
+];
+```
 
 ## Writing to a Blob
 
